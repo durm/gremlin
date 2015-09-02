@@ -11,8 +11,14 @@ class Prototype(models.Model):
 class Zone(Prototype):
     pass
 
-class Domain(Prototype):
+class DomainProto(Prototype):
     zone = models.ForeignKey(Zone)
     registrer_date = models.DateField(null=False)
     release_date = models.DateField(null=False)
     registrator = models.CharField(max_length=128)
+    
+    class Meta:
+        abstract = True
+        
+class Domain(DomainProto):
+    pass
